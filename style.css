@@ -1,0 +1,22 @@
+.resultHeader:nth-child(1) {
+  text-align: right;
+  padding: 0 15px;
+}
+.resultHeader:nth-child(2) {
+  text-align: right;
+  padding: 0 15px 0 0;
+}
+.resultHeader:nth-child(3) {
+  text-align: left;
+}
+.resultNumber {
+  text-align: right;
+  padding: 0 15px 0 0;
+}
+.resultSn {
+  text-align: right;
+  padding: 0 15px 0 0;
+}
+.resultWords {
+  text-align: left;
+}

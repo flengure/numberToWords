@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Convert a number to Words</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div style="float: left; padding: 0 15px 0 0">
+      <label for="number">Enter a number</label><br />
+      <input
+        id="userInput"
+        name="number"
+        type="number"
+        min="0"
+        size="50"
+        placeholder="24"
+        value="71"
+      />
+    </div>
+    <div style="float: left">
+      <label for="quantity">Additional numbers</label><br />
+      <input
+        id="addNumbers"
+        name="quantity"
+        type="number"
+        min="0"
+        size="30"
+        placeholder="0"
+      />
+    </div>
+    <div style="clear: both">&nbsp;</div>
+
+    <button id="convertBtn">Convert to words</button><br />
+    <br />
+    <div class="results" id="results"></div>
+    <script src="./index.js" type="module"></script>
+  </body>
+</html>

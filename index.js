@@ -1,31 +1,8 @@
-import { numberToWords } from "./numberToWords.js";
+//import our NumberFactory object
+import { NumberFactory } from "/src/NumberFactory.js";
 
 const convertBtn = document.querySelector("#convertBtn");
 const resultDiv = document.getElementById("results");
-
-const number_formatted = (number) => {
-  const number_array_dot    = number.toString().split('.');
-  const number_string_comma = number_array_dot[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  const number_coefficient  = Math.round((parseFloat(number_array_dot[0].substring(0,4).replace(/./, "$&.")) + Number.EPSILON) * 100) / 100;
-  const number_exponent     = number_array_dot[0].length - 1;
-  const number_science      = number_coefficient.toString() + " × 10<sup>" + number_exponent + "</sup>";
-  if ( number_array_dot[0].length < 4 ) {
-    return [ number, number_science ];
-  }
-  if (number_array_dot.length > 1) {
-    return [ [number_string_comma, number_array_dot[1]].join('.'), number_science ];
-  }
-  return [ number_string_comma, number_science ];
-}
-
-const numberWithCommas = (x) => {
-  const y = x.toString().split('.');
-  let result = y[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  if (y.length > 1) {
-    result = [result, y[1]].join('.');
-  }
-  return result;
-}
 
 const createResultTable = () => {
   // Create the table itself
@@ -96,7 +73,12 @@ const convertToWords = () => {
 
   createResultTable();
 
-  appendResult(number_formatted(userInput)[0], number_formatted(userInput)[1], numberToWords(userInput));
+
+  // Here we create our NumberFactory object
+  const o = new NumberFactory(userInput);
+
+  // Here we just get three methods defined in the object
+  appendResult(o.formatedNumber, o.scientificNotation, o.words);
 
   if (addNumbers > 0) {
     appendResult("", "");
@@ -108,13 +90,6 @@ const convertToWords = () => {
     }
     let skipCount = parseFloat(userInput) / parseFloat(addNumbers);
     let last_number = userInput;
-
-    console.log("scale=" + scale);
-    console.log("userInput=" + userInput);
-    console.log("addNumbers=" + addNumbers);
-
-    console.log("addCount=" + addCount);
-    console.log("skipCount=" + skipCount);
 
     for (let x = 0; x < addCount; x++) {
       console.log(addNumbers);
